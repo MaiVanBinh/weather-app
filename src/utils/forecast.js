@@ -10,7 +10,9 @@ const forecast = (latitude, longtitude, callback) => {
             const temperature = body.currently.temperature
             const precipProbability = body.currently.precipProbability
             const summary = body.daily.data[0].summary;
-            callback(undefined,summary+' It\'s currently ' + temperature + 'F (' + Math.ceil((temperature-32)/1.8)  + 'C ) degress out. There is a ' + precipProbability + '% change of raine' )
+            const dayTempMax = body.daily.data[0].temperatureHigh;
+            const dayTempLow = body.daily.data[0].temperatureLow;
+            callback(undefined,summary+'. The high temperature: ' + dayTempMax + 'F\n The low temperature: ' + dayTempLow +'F.\n It\'s currently ' + temperature + 'F (' + Math.ceil((temperature-32)/1.8)  + 'C ) degress out. There is a ' + precipProbability + '% change of raine' )
         }
     })
 }
